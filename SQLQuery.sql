@@ -28,6 +28,11 @@ create table Customer (
 	address varchar(50) not null
 );
 
+insert into Customer (name, phone, email, address) values
+('John', '12345678', 'test', 'test');
+
+select * from Customer;
+
 create table Rental (
 	id int not null identity(1,1) primary key,
 	bikeId int not null,
