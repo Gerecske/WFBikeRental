@@ -16,6 +16,13 @@ namespace WFBikeRental
         public string Phone { get; set; }
         public string Email { get; set; }
 
+        private int id;
+
+        public int GetId()
+        {
+            return id;
+        }
+
         public Costumer(string name, string phone, string email, string address)
         {
             Name = name;
@@ -24,11 +31,12 @@ namespace WFBikeRental
             Email = email;
         }
 
-        internal void AddToDB()
+        public bool AddToDB(int id)
         {
             if (Name.Length<1 || Address.Length<1 || Phone.Length<1 || Email.Length<1)
             {
                 MessageBox.Show("Please fill in all fields", "Error");
+                return false;
             }
             else
             {
@@ -41,12 +49,15 @@ namespace WFBikeRental
                     cmd.Parameters.AddWithValue("@Phone", Phone);
                     cmd.Parameters.AddWithValue("@Email", Email);
                     cmd.Parameters.AddWithValue("@Address", Address);
+                    id = Convert.ToInt32(cmd.ExecuteScalar());
                     cmd.ExecuteNonQuery();
                     conn.Close();
+                    return true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Database Error");
+                    return false;
                 }
             }
         }

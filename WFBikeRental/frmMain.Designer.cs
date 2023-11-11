@@ -137,7 +137,7 @@
             Controls.Add(tbName);
             Controls.Add(label1);
             Name = "frmMain";
-            Text = "Form1";
+            Text = "Bike Rental";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -10,7 +10,11 @@ namespace WFBikeRental
         private void btnNext_Click(object sender, EventArgs e)
         {
             Costumer costumer = new Costumer(tbName.Text, tbPhone.Text, tbEmail.Text, tbAddres.Text);
-            costumer.AddToDB();
+            if (costumer.AddToDB(costumer.GetId()))
+            {
+                frmBike bikeRental = new frmBike(costumer.GetId());
+                bikeRental.Show();
+            }
         }
     }
 }
